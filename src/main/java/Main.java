@@ -91,13 +91,6 @@ class Ultimate {
             post = driver.findElement(By.xpath(xDescription.substring(0, 63) + i + xDescription.substring(64)));
             description.add(post.getText());
 
-            System.out.println(posts);
-            System.out.println(photos);
-            System.out.println(names);
-            System.out.println(locations);
-            System.out.println(numbers);
-            System.out.println(description);
-
 
         }
 
