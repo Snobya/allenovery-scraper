@@ -6,7 +6,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -31,14 +30,14 @@ public class Main {
             int indexPages = 1;
 
             parseData:
-            for (;;) {
+            for (; ; ) {
 
                 for (int i = 1; i < 25 + 1; i++) {
                     Ultimate.scrapPost(driver, i, xPhoto, xName, xDescription);
                     if (i == 25) {
                         indexPages = indexPages + 25;
 
-                        if (indexPages == 2726) break   parseData;
+                        if (indexPages == 2726) break parseData;
 
 
                         Ultimate.goNextPage(driver, i, indexPages);
@@ -54,7 +53,7 @@ public class Main {
             }
 
         } finally {
-             driver.close();
+            driver.close();
         }
 
 
@@ -87,10 +86,7 @@ class Ultimate {
             names.add(data[0]);
             posts.add(data[1]);
             locations.add(data[2]);
-            System.out.println("qqqqqqqqq");
-            System.out.println(Arrays.toString(data));
             numbers.add(data[3]);
-            System.out.println(data[3]);
 
             post = driver.findElement(By.xpath(xDescription.substring(0, 63) + i + xDescription.substring(64)));
             description.add(post.getText());
@@ -113,22 +109,10 @@ class Ultimate {
         WebElement next = driver.findElement(By.xpath("//*[@id=\"SRP_NextImg\"]"));
 
 
-        //    WebDriverWait wait = new WebDriverWait(driver, 30000);
-
-        //wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#SRP_NextImg")));
-        // wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"SRP_NextImg\"]")));
-//*[@id="SRP_NextImg"]
-        //   Actions actions = new Actions(driver);
-
-        //   actions.moveToElement(next).click().perform();
-
-
-        // next.click();
-        //  http://www.allenovery.com/search/Pages/peopleresults.aspx?k=%2A&amp%3Bstart1=26&start1=26
         driver.navigate().to(" http://www.allenovery.com/search/Pages/peopleresults.aspx?k=%2A&amp%3Bstart1=26&start1=" + index);
         WebDriverWait wait1 = new WebDriverWait(driver, 30000000);
         wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"DOC_DETAIL_SRB_g_44c85f85_4cf6_4442_91ab_1e71ac80258b_" + i + "\"]/div/div[1]/a/img")));
-//*[@id="DOC_DETAIL_SRB_g_44c85f85_4cf6_4442_91ab_1e71ac80258b_1"]/div/div[1]/a/img
+
     }
 
     static List<String> parseToJson() {
@@ -140,8 +124,6 @@ class Ultimate {
         }
         return jsons;
     }
-
-
 
 
 }
